@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2021 at 04:37 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- Generation Time: 10.03.2021 klo 12:17
+-- Palvelimen versio: 10.4.17-MariaDB
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,7 +26,7 @@ USE `aava_db`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `attachment`
+-- Rakenne taululle `attachment`
 --
 
 CREATE TABLE `attachment` (
@@ -38,7 +38,7 @@ CREATE TABLE `attachment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `developer`
+-- Rakenne taululle `developer`
 --
 
 CREATE TABLE `developer` (
@@ -51,7 +51,7 @@ CREATE TABLE `developer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `project`
+-- Rakenne taululle `project`
 --
 
 CREATE TABLE `project` (
@@ -67,7 +67,7 @@ CREATE TABLE `project` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `project_developer`
+-- Rakenne taululle `project_developer`
 --
 
 CREATE TABLE `project_developer` (
@@ -80,7 +80,7 @@ CREATE TABLE `project_developer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `project_technology`
+-- Rakenne taululle `project_technology`
 --
 
 CREATE TABLE `project_technology` (
@@ -91,7 +91,7 @@ CREATE TABLE `project_technology` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `technology`
+-- Rakenne taululle `technology`
 --
 
 CREATE TABLE `technology` (
@@ -102,7 +102,7 @@ CREATE TABLE `technology` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Rakenne taululle `user`
 --
 
 CREATE TABLE `user` (
@@ -126,6 +126,12 @@ ALTER TABLE `attachment`
   ADD KEY `project_id` (`project_id`);
 
 --
+-- Indexes for table `developer`
+--
+ALTER TABLE `developer`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `project`
 --
 ALTER TABLE `project`
@@ -136,6 +142,15 @@ ALTER TABLE `project`
 --
 ALTER TABLE `project_developer`
   ADD KEY `dev_id` (`dev_id`),
+  ADD KEY `project_id` (`project_id`),
+  ADD KEY `dev_id_2` (`dev_id`),
+  ADD KEY `project_id_2` (`project_id`);
+
+--
+-- Indexes for table `project_technology`
+--
+ALTER TABLE `project_technology`
+  ADD KEY `technology_id` (`technology_id`),
   ADD KEY `project_id` (`project_id`);
 
 --
@@ -149,6 +164,46 @@ ALTER TABLE `technology`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `technology`
+--
+ALTER TABLE `technology`
+  MODIFY `id` smallint(6) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` smallint(3) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Rajoitteet vedostauluille
+--
+
+--
+-- Rajoitteet taululle `attachment`
+--
+ALTER TABLE `attachment`
+  ADD CONSTRAINT `attachment_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Rajoitteet taululle `project_developer`
+--
+ALTER TABLE `project_developer`
+  ADD CONSTRAINT `project_developer_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `project_developer_ibfk_2` FOREIGN KEY (`dev_id`) REFERENCES `developer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Rajoitteet taululle `project_technology`
+--
+ALTER TABLE `project_technology`
+  ADD CONSTRAINT `project_technology_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `project_technology_ibfk_2` FOREIGN KEY (`technology_id`) REFERENCES `technology` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
