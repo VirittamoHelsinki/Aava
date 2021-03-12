@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10.03.2021 klo 12:17
+-- Generation Time: 12.03.2021 klo 08:45
 -- Palvelimen versio: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -30,9 +30,9 @@ USE `aava_db`;
 --
 
 CREATE TABLE `attachment` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `project_id` smallint(6) UNSIGNED NOT NULL,
-  `attachment_link` varchar(100) NOT NULL
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `project_id` smallint(5) UNSIGNED NOT NULL,
+  `attachment_link` varchar(5000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -43,9 +43,9 @@ CREATE TABLE `attachment` (
 
 CREATE TABLE `developer` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `team` enum('core','ict','media','softdev','academy') NOT NULL,
-  `linkedin_link` varchar(100) NOT NULL
+  `name` varchar(5000) NOT NULL,
+  `team` enum('core','ict','medi','softdev','academy') NOT NULL,
+  `linkedin_link` varchar(5000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -56,12 +56,12 @@ CREATE TABLE `developer` (
 
 CREATE TABLE `project` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `project_name` varchar(50) NOT NULL,
-  `link` varchar(100) NOT NULL,
+  `project_name` varchar(5000) NOT NULL,
+  `link` varchar(5000) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `status` enum('coming','in_progress','done','halted') NOT NULL,
-  `description` varchar(1000) NOT NULL
+  `description` varchar(5000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -95,8 +95,8 @@ CREATE TABLE `project_technology` (
 --
 
 CREATE TABLE `technology` (
-  `id` smallint(6) UNSIGNED NOT NULL,
-  `technology_name` varchar(50) NOT NULL
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `technology_name` varchar(5000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -106,10 +106,10 @@ CREATE TABLE `technology` (
 --
 
 CREATE TABLE `user` (
-  `id` smallint(3) UNSIGNED NOT NULL,
-  `account` varchar(10) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `passwd` char(128) NOT NULL,
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `account` varchar(5000) NOT NULL,
+  `name` varchar(5000) NOT NULL,
+  `password` char(128) NOT NULL,
   `team` enum('core','ict','media','softdev','academy') NOT NULL,
   `super_user` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -141,10 +141,8 @@ ALTER TABLE `project`
 -- Indexes for table `project_developer`
 --
 ALTER TABLE `project_developer`
-  ADD KEY `dev_id` (`dev_id`),
-  ADD KEY `project_id` (`project_id`),
-  ADD KEY `dev_id_2` (`dev_id`),
-  ADD KEY `project_id_2` (`project_id`);
+  ADD PRIMARY KEY (`dev_id`),
+  ADD KEY `project_id` (`project_id`);
 
 --
 -- Indexes for table `project_technology`
@@ -170,16 +168,40 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `attachment`
+--
+ALTER TABLE `attachment`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `developer`
+--
+ALTER TABLE `developer`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `project`
+--
+ALTER TABLE `project`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `project_developer`
+--
+ALTER TABLE `project_developer`
+  MODIFY `dev_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `technology`
 --
 ALTER TABLE `technology`
-  MODIFY `id` smallint(6) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` smallint(3) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Rajoitteet vedostauluille
@@ -195,15 +217,15 @@ ALTER TABLE `attachment`
 -- Rajoitteet taululle `project_developer`
 --
 ALTER TABLE `project_developer`
-  ADD CONSTRAINT `project_developer_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `project_developer_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `project_developer_ibfk_2` FOREIGN KEY (`dev_id`) REFERENCES `developer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Rajoitteet taululle `project_technology`
 --
 ALTER TABLE `project_technology`
-  ADD CONSTRAINT `project_technology_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `project_technology_ibfk_2` FOREIGN KEY (`technology_id`) REFERENCES `technology` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `project_technology_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `project_technology_ibfk_2` FOREIGN KEY (`technology_id`) REFERENCES `technology` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
