@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 12.03.2021 klo 08:45
--- Palvelimen versio: 10.4.17-MariaDB
--- PHP Version: 8.0.2
+-- Generation Time: Mar 15, 2021 at 12:17 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,7 +26,7 @@ USE `aava_db`;
 -- --------------------------------------------------------
 
 --
--- Rakenne taululle `attachment`
+-- Table structure for table `attachment`
 --
 
 CREATE TABLE `attachment` (
@@ -38,7 +38,7 @@ CREATE TABLE `attachment` (
 -- --------------------------------------------------------
 
 --
--- Rakenne taululle `developer`
+-- Table structure for table `developer`
 --
 
 CREATE TABLE `developer` (
@@ -51,7 +51,7 @@ CREATE TABLE `developer` (
 -- --------------------------------------------------------
 
 --
--- Rakenne taululle `project`
+-- Table structure for table `project`
 --
 
 CREATE TABLE `project` (
@@ -67,7 +67,7 @@ CREATE TABLE `project` (
 -- --------------------------------------------------------
 
 --
--- Rakenne taululle `project_developer`
+-- Table structure for table `project_developer`
 --
 
 CREATE TABLE `project_developer` (
@@ -80,7 +80,7 @@ CREATE TABLE `project_developer` (
 -- --------------------------------------------------------
 
 --
--- Rakenne taululle `project_technology`
+-- Table structure for table `project_technology`
 --
 
 CREATE TABLE `project_technology` (
@@ -91,7 +91,7 @@ CREATE TABLE `project_technology` (
 -- --------------------------------------------------------
 
 --
--- Rakenne taululle `technology`
+-- Table structure for table `technology`
 --
 
 CREATE TABLE `technology` (
@@ -102,7 +102,7 @@ CREATE TABLE `technology` (
 -- --------------------------------------------------------
 
 --
--- Rakenne taululle `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -141,8 +141,8 @@ ALTER TABLE `project`
 -- Indexes for table `project_developer`
 --
 ALTER TABLE `project_developer`
-  ADD PRIMARY KEY (`dev_id`),
-  ADD KEY `project_id` (`project_id`);
+  ADD KEY `project_id` (`project_id`),
+  ADD KEY `dev_id` (`dev_id`) USING BTREE;
 
 --
 -- Indexes for table `project_technology`
@@ -186,12 +186,6 @@ ALTER TABLE `project`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `project_developer`
---
-ALTER TABLE `project_developer`
-  MODIFY `dev_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `technology`
 --
 ALTER TABLE `technology`
@@ -204,24 +198,24 @@ ALTER TABLE `user`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- Rajoitteet vedostauluille
+-- Constraints for dumped tables
 --
 
 --
--- Rajoitteet taululle `attachment`
+-- Constraints for table `attachment`
 --
 ALTER TABLE `attachment`
   ADD CONSTRAINT `attachment_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Rajoitteet taululle `project_developer`
+-- Constraints for table `project_developer`
 --
 ALTER TABLE `project_developer`
   ADD CONSTRAINT `project_developer_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `project_developer_ibfk_2` FOREIGN KEY (`dev_id`) REFERENCES `developer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Rajoitteet taululle `project_technology`
+-- Constraints for table `project_technology`
 --
 ALTER TABLE `project_technology`
   ADD CONSTRAINT `project_technology_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
