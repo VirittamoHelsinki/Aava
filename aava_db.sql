@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2021 at 12:17 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- Generation Time: 18.03.2021 klo 13:10
+-- Palvelimen versio: 10.4.17-MariaDB
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `aava_db`
+-- Database: `aava_db1`
 --
 CREATE DATABASE IF NOT EXISTS `aava_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `aava_db`;
@@ -26,7 +26,7 @@ USE `aava_db`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `attachment`
+-- Rakenne taululle `attachment`
 --
 
 CREATE TABLE `attachment` (
@@ -38,25 +38,25 @@ CREATE TABLE `attachment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `developer`
+-- Rakenne taululle `developer`
 --
 
 CREATE TABLE `developer` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `name` varchar(5000) NOT NULL,
-  `team` enum('core','ict','medi','softdev','academy') NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `team` enum('core','ict','media','softdev','academy') NOT NULL,
   `linkedin_link` varchar(5000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `project`
+-- Rakenne taululle `project`
 --
 
 CREATE TABLE `project` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `project_name` varchar(5000) NOT NULL,
+  `project_name` varchar(255) NOT NULL,
   `link` varchar(5000) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE `project` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `project_developer`
+-- Rakenne taululle `project_developer`
 --
 
 CREATE TABLE `project_developer` (
@@ -80,7 +80,7 @@ CREATE TABLE `project_developer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `project_technology`
+-- Rakenne taululle `project_technology`
 --
 
 CREATE TABLE `project_technology` (
@@ -91,24 +91,24 @@ CREATE TABLE `project_technology` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `technology`
+-- Rakenne taululle `technology`
 --
 
 CREATE TABLE `technology` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `technology_name` varchar(5000) NOT NULL
+  `technology_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Rakenne taululle `user`
 --
 
 CREATE TABLE `user` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `account` varchar(5000) NOT NULL,
-  `name` varchar(5000) NOT NULL,
+  `account` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `password` char(128) NOT NULL,
   `team` enum('core','ict','media','softdev','academy') NOT NULL,
   `super_user` tinyint(1) NOT NULL
@@ -198,24 +198,24 @@ ALTER TABLE `user`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Rajoitteet vedostauluille
 --
 
 --
--- Constraints for table `attachment`
+-- Rajoitteet taululle `attachment`
 --
 ALTER TABLE `attachment`
   ADD CONSTRAINT `attachment_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Constraints for table `project_developer`
+-- Rajoitteet taululle `project_developer`
 --
 ALTER TABLE `project_developer`
   ADD CONSTRAINT `project_developer_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `project_developer_ibfk_2` FOREIGN KEY (`dev_id`) REFERENCES `developer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `project_technology`
+-- Rajoitteet taululle `project_technology`
 --
 ALTER TABLE `project_technology`
   ADD CONSTRAINT `project_technology_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
