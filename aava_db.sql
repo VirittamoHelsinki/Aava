@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18.03.2021 klo 13:10
+-- Generation Time: 18.03.2021 klo 14:21
 -- Palvelimen versio: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `aava_db1`
+-- Database: `aava_db`
 --
 CREATE DATABASE IF NOT EXISTS `aava_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `aava_db`;
@@ -71,6 +71,7 @@ CREATE TABLE `project` (
 --
 
 CREATE TABLE `project_developer` (
+  `id` smallint(5) UNSIGNED NOT NULL,
   `dev_id` smallint(5) UNSIGNED NOT NULL,
   `join_date` date NOT NULL,
   `quit_date` date NOT NULL,
@@ -84,6 +85,7 @@ CREATE TABLE `project_developer` (
 --
 
 CREATE TABLE `project_technology` (
+  `id` smallint(5) UNSIGNED NOT NULL,
   `technology_id` smallint(5) UNSIGNED NOT NULL,
   `project_id` smallint(5) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -107,8 +109,8 @@ CREATE TABLE `technology` (
 
 CREATE TABLE `user` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `account` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `account` varchar(5000) NOT NULL,
+  `name` varchar(5000) NOT NULL,
   `password` char(128) NOT NULL,
   `team` enum('core','ict','media','softdev','academy') NOT NULL,
   `super_user` tinyint(1) NOT NULL
@@ -141,6 +143,7 @@ ALTER TABLE `project`
 -- Indexes for table `project_developer`
 --
 ALTER TABLE `project_developer`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `project_id` (`project_id`),
   ADD KEY `dev_id` (`dev_id`) USING BTREE;
 
@@ -148,6 +151,7 @@ ALTER TABLE `project_developer`
 -- Indexes for table `project_technology`
 --
 ALTER TABLE `project_technology`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `technology_id` (`technology_id`),
   ADD KEY `project_id` (`project_id`);
 
@@ -183,6 +187,18 @@ ALTER TABLE `developer`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `project_developer`
+--
+ALTER TABLE `project_developer`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `project_technology`
+--
+ALTER TABLE `project_technology`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --

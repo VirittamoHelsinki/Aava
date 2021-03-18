@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 16.03.2021 klo 12:21
+-- Generation Time: 18.03.2021 klo 14:20
 -- Palvelimen versio: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -61,8 +61,8 @@ INSERT INTO `attachment` (`id`, `project_id`, `attachment_link`) VALUES
 
 CREATE TABLE `developer` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `name` varchar(5000) NOT NULL,
-  `team` enum('core','ict','medi','softdev','academy') NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `team` enum('core','ict','media','softdev','academy') NOT NULL,
   `linkedin_link` varchar(5000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -72,19 +72,19 @@ CREATE TABLE `developer` (
 
 INSERT INTO `developer` (`id`, `name`, `team`, `linkedin_link`) VALUES
 (1, 'Aira Hakkeri', 'core', 'http://www.linkedin.com'),
-(2, 'Tarja Toimelias', 'medi', 'www.humppa.com'),
+(2, 'Tarja Toimelias', 'media', 'www.humppa.com'),
 (3, 'Pelkkä Marjatta', 'academy', 'http://www.marjatta.fi'),
 (4, 'Tarja Halonen', 'ict', 'http://www.hakkeri.info'),
 (5, 'Martti Ahtisaari', 'softdev', 'http://www.linkedin.com'),
 (6, 'Paavo Nurminen', 'core', 'http://www.iltalehti.fi'),
-(7, 'Mauno Koivisto', 'medi', 'http://www.linkedin.com'),
+(7, 'Mauno Koivisto', 'media', 'http://www.linkedin.com'),
 (8, 'Urho Kekkonen', 'ict', 'http://www.linkedin.com'),
-(9, 'Juho Paasikivi', 'medi', 'http://www.linkedin.com'),
+(9, 'Juho Paasikivi', 'media', 'http://www.linkedin.com'),
 (10, 'Carl Mannerheim', 'softdev', 'http://www.linkedin.com'),
 (11, 'Risto Ryti', 'academy', 'http://www.linkedin.com'),
 (12, 'Kyösti Kallio', 'core', 'http://www.linkedin.com'),
 (13, 'Pehr Svinhufvud', 'ict', 'http://www.linkedin.com'),
-(14, 'Lauri Relander', 'medi', 'http://www.linkedin.com'),
+(14, 'Lauri Relander', 'media', 'http://www.linkedin.com'),
 (15, 'Kaarlo Ståhlberg', 'softdev', 'http://www.linkedin.com'),
 (16, 'Sauli Niinistö', 'academy', 'http://www.linkedin.com');
 
@@ -96,7 +96,7 @@ INSERT INTO `developer` (`id`, `name`, `team`, `linkedin_link`) VALUES
 
 CREATE TABLE `project` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `project_name` varchar(5000) NOT NULL,
+  `project_name` varchar(255) NOT NULL,
   `link` varchar(5000) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
@@ -109,7 +109,7 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`id`, `project_name`, `link`, `start_date`, `end_date`, `status`, `description`) VALUES
-(1, 'Aarnivalkea projekti', 'http://www.duckduckgo.com', '2021-03-16', '2999-06-06', 'in_progress', 'Oudoksuttavaa kyllä, on useasti todettu, että informaatioteknologia asettaa tahomme tukalaan tilanteeseen ajateltaessa viimeaikaisia absurdeja väittämiä. Arkielämä on opettanut meille, että Aarnivalkea noudattaa epäilemättä ideatasolla ilmiöiden liiallista nonfiguratiivisuutta. '),
+(1, 'Aarnivalkea projekti', 'http://www.duckduckgo.com', '2021-03-16', '2999-06-06', 'coming', 'Oudoksuttavaa kyllä, on useasti todettu, että informaatioteknologia asettaa tahomme tukalaan tilanteeseen ajateltaessa viimeaikaisia absurdeja väittämiä. Arkielämä on opettanut meille, että Aarnivalkea noudattaa epäilemättä ideatasolla ilmiöiden liiallista nonfiguratiivisuutta. '),
 (2, 'Valokuvausmetodillinen tutkiminen', 'http://www.humppa.com', '2021-03-02', '2022-01-28', 'done', 'Humppamedia toivottaa sinut tervettulleeksi viidakkoon, meillä on hupeja ja pelejä. Ohjelmistotuotannollisesta näkökulmasta tämä on kuitenkin hyvin problemaattista kun ajatellaan statosfäärin mediadiskursiollista tuotantoa. '),
 (5, 'Nopea ohjelmistokehitys', 'http://www.youtube.com', '2020-01-01', '2029-05-05', 'halted', 'Meinattiin tehdä kilpailija Youtubelle mutta koodaamamme dekoderi oli niin tehokas että Google osti sen 1000 miljardilla $USD.'),
 (6, 'Ancible palvelimen ymmärtäminen', 'http://www.ancible.com', '2020-01-01', '9999-12-31', 'in_progress', 'Vaikka odottaisimme 1000000 vuotta, ei ihmiskunta silti ymmärrä anciblea.');
@@ -121,6 +121,7 @@ INSERT INTO `project` (`id`, `project_name`, `link`, `start_date`, `end_date`, `
 --
 
 CREATE TABLE `project_developer` (
+  `id` smallint(5) UNSIGNED NOT NULL,
   `dev_id` smallint(5) UNSIGNED NOT NULL,
   `join_date` date NOT NULL,
   `quit_date` date NOT NULL,
@@ -131,15 +132,17 @@ CREATE TABLE `project_developer` (
 -- Vedos taulusta `project_developer`
 --
 
-INSERT INTO `project_developer` (`dev_id`, `join_date`, `quit_date`, `project_id`) VALUES
-(11, '2020-01-01', '2020-01-05', 1),
-(15, '2020-04-04', '2022-05-05', 1),
-(8, '2020-01-01', '2021-10-10', 2),
-(14, '2020-01-01', '2021-10-10', 2),
-(16, '2020-01-01', '2020-01-05', 5),
-(13, '2020-01-01', '2020-01-05', 5),
-(10, '2020-01-01', '2021-10-10', 6),
-(1, '2020-01-01', '2020-01-05', 6);
+INSERT INTO `project_developer` (`id`, `dev_id`, `join_date`, `quit_date`, `project_id`) VALUES
+(1, 11, '2020-01-01', '2020-01-05', 1),
+(2, 15, '2020-04-04', '2022-05-05', 1),
+(3, 8, '2020-01-01', '2021-10-10', 2),
+(4, 14, '2020-01-01', '2021-10-10', 2),
+(5, 16, '2020-01-01', '2020-01-05', 5),
+(6, 13, '2020-01-01', '2020-01-05', 5),
+(7, 10, '2020-01-01', '2021-10-10', 6),
+(8, 1, '2020-01-01', '2020-01-05', 6),
+(9, 1, '2021-03-18', '0000-00-00', 2),
+(10, 1, '2021-03-18', '0999-01-01', 5);
 
 -- --------------------------------------------------------
 
@@ -148,6 +151,7 @@ INSERT INTO `project_developer` (`dev_id`, `join_date`, `quit_date`, `project_id
 --
 
 CREATE TABLE `project_technology` (
+  `id` smallint(5) UNSIGNED NOT NULL,
   `technology_id` smallint(5) UNSIGNED NOT NULL,
   `project_id` smallint(5) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -156,15 +160,15 @@ CREATE TABLE `project_technology` (
 -- Vedos taulusta `project_technology`
 --
 
-INSERT INTO `project_technology` (`technology_id`, `project_id`) VALUES
-(5, 1),
-(1, 1),
-(4, 2),
-(10, 2),
-(2, 5),
-(9, 5),
-(6, 6),
-(9, 6);
+INSERT INTO `project_technology` (`id`, `technology_id`, `project_id`) VALUES
+(1, 5, 1),
+(2, 1, 1),
+(3, 4, 2),
+(4, 10, 2),
+(5, 2, 5),
+(6, 9, 5),
+(7, 6, 6),
+(8, 9, 6);
 
 -- --------------------------------------------------------
 
@@ -174,7 +178,7 @@ INSERT INTO `project_technology` (`technology_id`, `project_id`) VALUES
 
 CREATE TABLE `technology` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `technology_name` varchar(5000) NOT NULL
+  `technology_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -244,6 +248,7 @@ ALTER TABLE `project`
 -- Indexes for table `project_developer`
 --
 ALTER TABLE `project_developer`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `project_id` (`project_id`),
   ADD KEY `dev_id` (`dev_id`) USING BTREE;
 
@@ -251,6 +256,7 @@ ALTER TABLE `project_developer`
 -- Indexes for table `project_technology`
 --
 ALTER TABLE `project_technology`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `technology_id` (`technology_id`),
   ADD KEY `project_id` (`project_id`);
 
@@ -287,6 +293,18 @@ ALTER TABLE `developer`
 --
 ALTER TABLE `project`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `project_developer`
+--
+ALTER TABLE `project_developer`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `project_technology`
+--
+ALTER TABLE `project_technology`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `technology`
