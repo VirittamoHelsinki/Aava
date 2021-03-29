@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18.03.2021 klo 14:20
+-- Generation Time: 29.03.2021 klo 16:51
 -- Palvelimen versio: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -56,37 +56,47 @@ INSERT INTO `attachment` (`id`, `project_id`, `attachment_link`) VALUES
 -- --------------------------------------------------------
 
 --
--- Rakenne taululle `developer`
+-- Rakenne taululle `employee`
 --
 
-CREATE TABLE `developer` (
+CREATE TABLE `employee` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `account` varchar(5000) NOT NULL,
+  `name` varchar(5000) NOT NULL,
+  `password` char(128) NOT NULL,
   `team` enum('core','ict','media','softdev','academy') NOT NULL,
-  `linkedin_link` varchar(5000) NOT NULL
+  `super_user` tinyint(1) NOT NULL,
+  `disabled` tinyint(1) NOT NULL,
+  `linkedin` varchar(255) NOT NULL,
+  `portfolio` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Vedos taulusta `developer`
+-- Vedos taulusta `employee`
 --
 
-INSERT INTO `developer` (`id`, `name`, `team`, `linkedin_link`) VALUES
-(1, 'Aira Hakkeri', 'core', 'http://www.linkedin.com'),
-(2, 'Tarja Toimelias', 'media', 'www.humppa.com'),
-(3, 'Pelkkä Marjatta', 'academy', 'http://www.marjatta.fi'),
-(4, 'Tarja Halonen', 'ict', 'http://www.hakkeri.info'),
-(5, 'Martti Ahtisaari', 'softdev', 'http://www.linkedin.com'),
-(6, 'Paavo Nurminen', 'core', 'http://www.iltalehti.fi'),
-(7, 'Mauno Koivisto', 'media', 'http://www.linkedin.com'),
-(8, 'Urho Kekkonen', 'ict', 'http://www.linkedin.com'),
-(9, 'Juho Paasikivi', 'media', 'http://www.linkedin.com'),
-(10, 'Carl Mannerheim', 'softdev', 'http://www.linkedin.com'),
-(11, 'Risto Ryti', 'academy', 'http://www.linkedin.com'),
-(12, 'Kyösti Kallio', 'core', 'http://www.linkedin.com'),
-(13, 'Pehr Svinhufvud', 'ict', 'http://www.linkedin.com'),
-(14, 'Lauri Relander', 'media', 'http://www.linkedin.com'),
-(15, 'Kaarlo Ståhlberg', 'softdev', 'http://www.linkedin.com'),
-(16, 'Sauli Niinistö', 'academy', 'http://www.linkedin.com');
+INSERT INTO `employee` (`id`, `account`, `name`, `password`, `team`, `super_user`, `disabled`, `linkedin`, `portfolio`) VALUES
+(1, 'raimotar', 'Raimo Tartar', '123jaiwöefjliwaöejfa30r403928jgiaowjef98aXDFj8ea9f832fjawefAEWFawefjifoawejf98aj2fAWEFWAEfawefAWEFawFawFDadsfASDfaiekNMdksliDc!#', 'core', 1, 0, 'https://www.linkedin.com', 'https://www.github.com'),
+(2, 'teetest', 'Teemu Testaaja', '123jaiwöefjliwaöejfa30r403928jgiaowjef98aXDFj8ea9f832fjawefAEWFawefjifoawejf98aj2fAWEFWAEfawefAWEFawFawFDadsfASDfaiekNMdksliDc!#', 'media', 0, 0, '', ''),
+(3, 'harrhak', 'Harri Hakkeri', '123jaiwöefjliwaöejfa30r403928jgiaowjef98aXDFj8ea9f832fjawefAEWFawefjifoawejf98aj2fAWEFWAEfawefAWEFawFawFDadsfASDfaiekNMdksliDc!#', 'softdev', 0, 0, '', ''),
+(4, 'haltar', 'Tarja Halonen', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesda', 'core', 1, 0, 'http://www.linkedin.com', 'http://www.github.com'),
+(5, 'ahtmar', 'Martti Ahtisaari', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesda', 'ict', 1, 0, 'https://www.linkedin.com', 'https://www.github.com'),
+(6, 'nurpaa', 'Paavo Nurmi', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesda', 'media', 1, 1, 'http://www.linkedin.com', 'https://www.github.com'),
+(7, 'koimau', 'Mauno Koivisto', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesda', 'softdev', 0, 0, 'https://www.linkedin.com', 'https://www.github.com'),
+(8, 'kekurh', 'Urho Kekkonen', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesda', 'academy', 0, 1, 'https://www.github.com', 'https://www.linkedin.com'),
+(9, 'paajuh', 'Juho Paasikivi', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesda', 'core', 1, 1, 'https://www.linkedin.com', 'https://www.github.com'),
+(10, 'mancar', 'Carl Mannerheim', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesda', 'ict', 1, 0, 'https://www.linkedin.com', 'https://www.github.com'),
+(11, 'rytris', 'Risto Ryti', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesda', 'media', 1, 0, 'https://www.miumau.com', 'https://www.thecatapi.com'),
+(12, 'kalkyo', 'Kyösti Kallio', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesda', 'softdev', 1, 0, 'https://www.linkedin.com', 'https://www.github.com'),
+(13, 'svipeh', 'Pehr Svinhufvud', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesda', 'academy', 1, 0, 'https://www.linkedin.com', 'https://www.github.com'),
+(14, 'rellau', 'Lauri Relander', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesda', 'academy', 0, 0, 'https://www.linkedin.com', 'https://www.github.com'),
+(15, 'stakaa', 'Kaarlo Ståhlber', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesd3', 'core', 1, 0, 'https://www.linkedin.com', 'https://www.github.com'),
+(16, 'niisau', 'Sauli Niinistö', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesda', 'media', 0, 1, 'https://www.linkedin.com', 'https://www.github.com'),
+(17, 'toitar', 'Tarja Toimelias', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesda', 'media', 0, 0, 'https://www.linkedin.com', 'https://www.github.com'),
+(18, 'marpel', 'Pelkkä Marjatta', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesda', 'softdev', 1, 1, 'https://www.linkedin.com', 'https://www.github.com'),
+(19, '', '', '', 'ict', 0, 1, 'https://www.linkedin.com', 'https://www.github.com'),
+(20, 'voikun', 'Kuningas Voittamaton', 'atomiydinenergiareaktorigeneraattorilauhduttajaturbiiniratasvaihde!123ajfaiowejfaweöofijwaeöoif232384902wajfioöawfjko234edawesda', 'softdev', 1, 0, 'https://www.youtube.com/watch?v=suW5FY3XYfo', 'https://www.voikun.fi'),
+(21, 'oispaa', 'Paavo Oisinen', 'https://www.youtube.com/watch?v=suW5FY3XYfo', 'softdev', 0, 0, 'https://www.oispa.fi', 'https://portfolio.on.evvk.com');
 
 -- --------------------------------------------------------
 
@@ -197,30 +207,6 @@ INSERT INTO `technology` (`id`, `technology_name`) VALUES
 (9, 'Amiga Tracker'),
 (10, 'Kynäruiskumaalaus');
 
--- --------------------------------------------------------
-
---
--- Rakenne taululle `user`
---
-
-CREATE TABLE `user` (
-  `id` smallint(5) UNSIGNED NOT NULL,
-  `account` varchar(5000) NOT NULL,
-  `name` varchar(5000) NOT NULL,
-  `password` char(128) NOT NULL,
-  `team` enum('core','ict','media','softdev','academy') NOT NULL,
-  `super_user` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Vedos taulusta `user`
---
-
-INSERT INTO `user` (`id`, `account`, `name`, `password`, `team`, `super_user`) VALUES
-(1, 'raimotar', 'Raimo Tartar', '123jaiwöefjliwaöejfa30r403928jgiaowjef98aXDFj8ea9f832fjawefAEWFawefjifoawejf98aj2fAWEFWAEfawefAWEFawFawFDadsfASDfaiekNMdksliDc!#', 'core', 0),
-(2, 'teetest', 'Teemu Testaaja', '123jaiwöefjliwaöejfa30r403928jgiaowjef98aXDFj8ea9f832fjawefAEWFawefjifoawejf98aj2fAWEFWAEfawefAWEFawFawFDadsfASDfaiekNMdksliDc!#', 'media', 0),
-(3, 'harrhak', 'Harri Hakkeri', '123jaiwöefjliwaöejfa30r403928jgiaowjef98aXDFj8ea9f832fjawefAEWFawefjifoawejf98aj2fAWEFWAEfawefAWEFawFawFDadsfASDfaiekNMdksliDc!#', 'softdev', 0);
-
 --
 -- Indexes for dumped tables
 --
@@ -233,9 +219,9 @@ ALTER TABLE `attachment`
   ADD KEY `project_id` (`project_id`);
 
 --
--- Indexes for table `developer`
+-- Indexes for table `employee`
 --
-ALTER TABLE `developer`
+ALTER TABLE `employee`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -267,12 +253,6 @@ ALTER TABLE `technology`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -283,10 +263,10 @@ ALTER TABLE `attachment`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `developer`
+-- AUTO_INCREMENT for table `employee`
 --
-ALTER TABLE `developer`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+ALTER TABLE `employee`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `project`
@@ -313,12 +293,6 @@ ALTER TABLE `technology`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- Rajoitteet vedostauluille
 --
 
@@ -333,7 +307,7 @@ ALTER TABLE `attachment`
 --
 ALTER TABLE `project_developer`
   ADD CONSTRAINT `project_developer_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `project_developer_ibfk_2` FOREIGN KEY (`dev_id`) REFERENCES `developer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `project_developer_ibfk_2` FOREIGN KEY (`dev_id`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Rajoitteet taululle `project_technology`
