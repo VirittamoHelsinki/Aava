@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18.03.2021 klo 14:21
+-- Generation Time: 29.03.2021 klo 16:51
 -- Palvelimen versio: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -38,14 +38,19 @@ CREATE TABLE `attachment` (
 -- --------------------------------------------------------
 
 --
--- Rakenne taululle `developer`
+-- Rakenne taululle `employee`
 --
 
-CREATE TABLE `developer` (
+CREATE TABLE `employee` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `account` varchar(5000) NOT NULL,
+  `name` varchar(5000) NOT NULL,
+  `password` char(128) NOT NULL,
   `team` enum('core','ict','media','softdev','academy') NOT NULL,
-  `linkedin_link` varchar(5000) NOT NULL
+  `super_user` tinyint(1) NOT NULL,
+  `disabled` tinyint(1) NOT NULL,
+  `linkedin` varchar(255) NOT NULL,
+  `portfolio` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -101,21 +106,6 @@ CREATE TABLE `technology` (
   `technology_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
---
--- Rakenne taululle `user`
---
-
-CREATE TABLE `user` (
-  `id` smallint(5) UNSIGNED NOT NULL,
-  `account` varchar(5000) NOT NULL,
-  `name` varchar(5000) NOT NULL,
-  `password` char(128) NOT NULL,
-  `team` enum('core','ict','media','softdev','academy') NOT NULL,
-  `super_user` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 --
 -- Indexes for dumped tables
 --
@@ -128,9 +118,9 @@ ALTER TABLE `attachment`
   ADD KEY `project_id` (`project_id`);
 
 --
--- Indexes for table `developer`
+-- Indexes for table `employee`
 --
-ALTER TABLE `developer`
+ALTER TABLE `employee`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -162,12 +152,6 @@ ALTER TABLE `technology`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -178,9 +162,9 @@ ALTER TABLE `attachment`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `developer`
+-- AUTO_INCREMENT for table `employee`
 --
-ALTER TABLE `developer`
+ALTER TABLE `employee`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -208,12 +192,6 @@ ALTER TABLE `technology`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- Rajoitteet vedostauluille
 --
 
@@ -228,7 +206,7 @@ ALTER TABLE `attachment`
 --
 ALTER TABLE `project_developer`
   ADD CONSTRAINT `project_developer_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `project_developer_ibfk_2` FOREIGN KEY (`dev_id`) REFERENCES `developer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `project_developer_ibfk_2` FOREIGN KEY (`dev_id`) REFERENCES `employee` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Rajoitteet taululle `project_technology`
