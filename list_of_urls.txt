@@ -1,0 +1,14 @@
+List of all urls of Aava-backend
+
+127.0.0.1:8000/technology
+127.0.0.1:8000/employee
+127.0.0.1:8000/project
+127.0.0.1:8000/attachment
+127.0.0.1:8000/user
+127.0.0.1:8000/projectdeveloper
+127.0.0.1:8000/dashboard
+127.0.0.1:8000/usermanagement
+127.0.0.1:8000/employeeforpresentation
+127.0.0.1:8000/presentation
+127.0.0.1:8000/createproject
+127.0.0.1:8000/createprojectdeveloper
