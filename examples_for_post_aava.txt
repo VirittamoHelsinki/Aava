@@ -1,0 +1,106 @@
+Examples of posts:
+
+status can be: FU IN FI HA
+Future Project, In Progress, Finished, Halted
+
+team can be: CO IC SO ME
+Core, ICT, Softdev, Media
+
+###############################################################################
+
+127.0.0.1:8000/employee/
+
+{
+    "linkedin": "https://www.simosolmio.fi",
+    "portfolio": "https://www.github.com/simosolmio",
+    "team": "SO",
+    "user": {
+        "username": "solsim",
+        "first_name": "Simo",
+        "last_name": "Solmio",
+        "email": "simosolmio@edu.hel.fi",
+        "is_staff": true,
+        "is_active": true,
+        "is_superuser": false,
+        "last_login": null,
+        "date_joined": "2021-05-31T00:01"
+    }
+}
+
+###############################################################################
+
+127.0.0.1:8000/user/
+
+{
+    "username": "solsim",
+    "first_name": "Simo",
+    "last_name": "Solmio",
+    "email": "simosolmio@edu.hel.fi",
+    "is_staff": true,
+    "is_active": true,
+    "is_superuser": false,
+    "last_login": null,
+    "date_joined": "2021-05-31T00:01"
+	}
+
+###############################################################################
+
+127.0.0.1:8000/project/
+
+{
+    "project_name": "This is the name of the project",
+    "start_time": "2021-06-01",
+    "end_time": "2022-07-05",
+    "description": "This is the description of the project.",
+    "status": "FU",
+    "team": "ME",
+    "visible": false,
+    "attachment": [
+    {"attachment_link": "https://cdn2.thecatapi.com/images/4n0.png"},
+    {"attachment_link": "https://cdn2.thecatapi.com/images/O2aNhFGU-.jpg"},
+    {"attachment_link": "https://cdn2.thecatapi.com/images/MTcyMDMzMg.jpg"}
+],
+    "technology": [
+    2,
+    1,
+    5
+]
+}
+
+###############################################################################
+
+127.0.0.1:8000/technology/
+
+{
+    "technology_name": "Kahvin juonti",
+    "team": "CO"
+}
+
+###############################################################################
+
+127.0.0.1:8000/projectdeveloper/
+
+#Does not work correctly for post, use 127.0.0.1:8000/createprojectdeveloper/
+
+###############################################################################
+
+127.0.0.1:8000/createprojectdeveloper/
+
+{
+    "employee": 2,
+    "project": 9,
+    "join_date": "0001-01-01",
+    "quit_date": "9999-09-09"
+}
+
+###############################################################################
+
+127.0.0.1:8000/attachment/
+
+#Post and handle these through createproject please
+
+{
+    "attachment_link": "https://cdn2.thecatapi.com/images/MTYwNjU5OA.jpg"
+}
+
+###############################################################################
