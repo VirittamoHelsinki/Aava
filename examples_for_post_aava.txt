@@ -6,6 +6,10 @@ Future Project, In Progress, Finished, Halted
 team can be: CO IC SO ME
 Core, ICT, Softdev, Media
 
+If you want a specific item from any api, be it for GET, POST, UPDATE or DELETE
+just add the ID of the item after. Like 127.0.0.1:8000/employee/1 for ID1 or
+127.0.0.1:8000/employee/286 for the employee ID 286.
+
 ###############################################################################
 
 127.0.0.1:8000/employee/
