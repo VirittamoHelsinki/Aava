@@ -68,7 +68,24 @@ just add the ID of the item after. Like 127.0.0.1:8000/employee/1 for ID1 or
     2,
     1,
     5
-]
+],
+    "developer": [
+        {
+            "employee": 5,
+            "join_date": "2020-03-28",
+            "quit_date": "2021-02-28"
+        },
+        {
+            "employee": 4,
+            "join_date": "2021-05-28",
+            "quit_date": "2021-05-28"
+        },
+        {
+            "employee": 18,
+            "join_date": "2000-01-01",
+            "quit_date": "2001-04-08"
+        }
+    ]
 }
 
 ###############################################################################
