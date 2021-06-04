@@ -49,7 +49,7 @@ just add the ID of the item after. Like 127.0.0.1:8000/employee/1 for ID1 or
 
 ###############################################################################
 
-127.0.0.1:8000/project/
+127.0.0.1:8000/createproject/
 
 {
     "project_name": "This is the name of the project",
@@ -95,16 +95,6 @@ just add the ID of the item after. Like 127.0.0.1:8000/employee/1 for ID1 or
     "project": 9,
     "join_date": "0001-01-01",
     "quit_date": "9999-09-09"
-}
-
-###############################################################################
-
-127.0.0.1:8000/attachment/
-
-#Post and handle these through createproject please
-
-{
-    "attachment_link": "https://cdn2.thecatapi.com/images/MTYwNjU5OA.jpg"
 }
 
 ###############################################################################
