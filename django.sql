@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2021 at 11:56 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- Generation Time: 10.06.2021 klo 12:04
+-- Palvelimen versio: 10.4.17-MariaDB
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,15 +18,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `aavadb`
+-- Database: `django`
 --
-CREATE DATABASE IF NOT EXISTS `aavadb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `aavadb`;
+CREATE DATABASE IF NOT EXISTS `django` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `django`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aavabackend_attachment`
+-- Rakenne taululle `aavabackend_attachment`
 --
 
 CREATE TABLE `aavabackend_attachment` (
@@ -36,7 +36,7 @@ CREATE TABLE `aavabackend_attachment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `aavabackend_attachment`
+-- Vedos taulusta `aavabackend_attachment`
 --
 
 INSERT INTO `aavabackend_attachment` (`id`, `attachment_link`, `project_id`) VALUES
@@ -80,12 +80,27 @@ INSERT INTO `aavabackend_attachment` (`id`, `attachment_link`, `project_id`) VAL
 (131, 'https://cdn2.thecatapi.com/images/ach.jpg', 15),
 (132, 'https://cdn2.thecatapi.com/images/6nv.jpg', 16),
 (133, 'https://cdn2.thecatapi.com/images/25v.jpg', 16),
-(134, 'https://cdn2.thecatapi.com/images/234.jpg', 16);
+(134, 'https://cdn2.thecatapi.com/images/234.jpg', 16),
+(135, 'https://cdn2.thecatapi.com/images/bpe.jpg', 22),
+(136, 'https://cdn2.thecatapi.com/images/cdv.jpg', 22),
+(137, 'https://cdn2.thecatapi.com/images/buo.jpg', 22),
+(138, 'https://cdn2.thecatapi.com/images/4n0.png', 23),
+(139, 'https://cdn2.thecatapi.com/images/O2aNhFGU-.jpg', 23),
+(140, 'https://cdn2.thecatapi.com/images/MTcyMDMzMg.jpg', 23),
+(141, 'https://cdn2.thecatapi.com/images/4n0.png', 24),
+(142, 'https://cdn2.thecatapi.com/images/O2aNhFGU-.jpg', 24),
+(143, 'https://cdn2.thecatapi.com/images/MTcyMDMzMg.jpg', 24),
+(144, 'https://cdn2.thecatapi.com/images/jHpf7h7Ws.png', 25),
+(145, 'https://cdn2.thecatapi.com/images/ae3.gif', 25),
+(146, 'https://cdn2.thecatapi.com/images/MTYyODkzNQ.jpg', 25),
+(147, 'https://cdn2.thecatapi.com/images/4n0.png', 26),
+(148, 'https://cdn2.thecatapi.com/images/O2aNhFGU-.jpg', 26),
+(149, 'https://cdn2.thecatapi.com/images/MTcyMDMzMg.jpg', 26);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aavabackend_employee`
+-- Rakenne taululle `aavabackend_employee`
 --
 
 CREATE TABLE `aavabackend_employee` (
@@ -97,7 +112,7 @@ CREATE TABLE `aavabackend_employee` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `aavabackend_employee`
+-- Vedos taulusta `aavabackend_employee`
 --
 
 INSERT INTO `aavabackend_employee` (`id`, `linkedin`, `portfolio`, `team`, `user_id`) VALUES
@@ -117,12 +132,13 @@ INSERT INTO `aavabackend_employee` (`id`, `linkedin`, `portfolio`, `team`, `user
 (14, 'https://www.linkedin.com/tarjatoimelias', 'https://www.github.com/tarjatoimelias', 'IC', 17),
 (15, 'https://www.linkedin.com/paavovayrynen', 'https://www.github.com/paavovayrynen', 'IC', 2),
 (16, 'https://www.linkedin.com/kuningasvoittamaton', 'https://www.github.com/kuningasvoittamaton', 'SO', 16),
-(17, 'https://www.linkedin.com/VladimirPutin', 'https://www.github.com/VladimirPutin', 'SO', 18);
+(17, 'https://www.linkedin.com/VladimirPutin', 'https://www.github.com/VladimirPutin', 'SO', 18),
+(18, 'https://www.simosolmio.fi', 'https://www.github.com/simosolmio', 'SO', 19);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aavabackend_project`
+-- Rakenne taululle `aavabackend_project`
 --
 
 CREATE TABLE `aavabackend_project` (
@@ -134,38 +150,44 @@ CREATE TABLE `aavabackend_project` (
   `description` varchar(5000) NOT NULL,
   `visible` tinyint(1) NOT NULL,
   `status` varchar(2) NOT NULL,
-  `team` varchar(2) NOT NULL
+  `team` varchar(2) NOT NULL,
+  `modified` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `aavabackend_project`
+-- Vedos taulusta `aavabackend_project`
 --
 
-INSERT INTO `aavabackend_project` (`id`, `project_name`, `link`, `start_time`, `end_time`, `description`, `visible`, `status`, `team`) VALUES
-(3, 'Aarnivalkea', 'https://www.github.com/aavavalkea', '2021-05-24', '2021-07-22', 'Aarnivalkea on maailman paras ohjelmistokehitysprojekti', 1, 'IN', 'SO'),
-(4, 'Valokuvausmetodillinen tutkiminen', 'https://www.github.com', '2021-05-02', '2055-05-05', 'Suoritetaan valokuvausmetodillista tutkimista, kuinka kehittää asioita valokuvausmetodillisesti. Lienee sanomattakin selvää, että Valokuvausmetodillinen tutkimus vaatii täsmällisyyttä ja päättäväisyyttä, ja kannustaa kehittämään reaktiota tämänhetkisen tilanteen suhteen.', 1, 'FU', 'SO'),
-(5, 'Nopea ohjelmistokehitys', 'https://www.linkedin.com', '1980-01-09', '2021-05-02', 'Meinattiin tehdä kilpailija Youtubelle mutta koodaamamme dekoderi oli niin tehokas että Google osti sen 1000 miljardilla $USD.', 1, 'IN', 'SO'),
-(6, 'Ancible palvelimen ymmärtäminen', 'https://www.ancible.com', '2017-01-01', '2999-12-31', 'Vaikka odottaisimme 1000000 vuotta, ei ihmiskunta silti ymmärrä anciblea.', 1, 'IN', 'SO'),
-(7, 'Uusien yhteistyökumppaneiden löytäminen', 'https://www.yhteistyokumppani.fi', '1970-01-01', '9999-12-31', 'Epätoivoiselta tämä näyttää....', 1, 'HA', 'SO'),
-(8, 'UKM (Uusi Kilpailija Microsoftille)', 'https://www.umk.fi', '2020-10-27', '9999-12-31', 'Olemme alkaneet kirjoittamaan uutta käyttöjärjestelmää jonka pitäisi kokonaan korvata kaikki Microsoftin tarjoamat palvelut, mukaanlukien mutta ei rajoittuneena Github, Linkedin, xbox game pass, Windows, Visual Studio ja MsDos.', 1, 'IN', 'SO'),
-(9, 'Chlas Ohlson Fikaus Viikko', 'https://www.chasohlson.fi', '2021-05-03', '2021-05-03', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 'FU', 'SO'),
-(10, 'Työvälinevaraston avajaiset', 'https://www.tyovalinevarasto.co.su', '2021-05-03', '2222-05-03', 'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure? But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure? But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?', 1, 'FI', 'SO'),
-(11, 'World Ablaze The Second World War 1939-1945', 'https://www.softakehitys.fi', '2021-05-03', '2021-05-03', 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.', 0, 'IN', 'SO'),
-(12, 'Miksi ohjelmiston versionhallinta on tärkeää', 'kuinka usein ohjelmistokoodi pitäisi viedä versionhallinnassa', '2021-05-03', '2021-05-03', 'mitä muuta tietoa kuin koodi pitäisi ylläpitää versionhallinnassa? digitaalisen median versiohallinta? IT-alue ja versionhallinta? Versionhallinta microsoft/google etc', 1, 'HA', 'SO'),
-(13, 'Projektin luonti työkalu', 'https://www.projektinluontityokalu.fi', '2021-05-03', '2021-05-03', 'Versionhallinnan ylläpitäminen on ohjelmistokehityksellisesti erittäin merkittävä attribuuttien konfiguroimisen apuväline. Tästä johtuen Projektinluontityökalun olemassaolo ja hengittäminen ovat tärkeitä asioita. Myös veden juominen on tärkeää. Paitsi raskaan veden, sen juomiseen kuolee ja se on hyvin kurjaa.', 1, 'FI', 'SO'),
-(14, 'I pressed the HRE control and ahead of me rockets blazed through the sky', 'https://www.github.com/aavavalkakakaoe', '2021-05-03', '2021-05-03', 'Korkeajännitys (”Korkkari”) on Egmontin kustantama ja julkaisema sota-aiheinen sarjakuvalehti. Korkeajännitys aloitti ilmestymisensä Suomessa vuonna 1953 nimellä Korkeajännityssarja. Lehti sisälsi aluksi salapoliisi-, tieteis-, agentti- ja seikkailusarjoja. 1960-luvulta alkaen Korkeajännityksessä on ilmestynyt vain sotasarjakuvia, jotka useimmiten käsittelevät toista maailmansotaa brittisotilaiden näkökulmasta. Suosituimmillaan lehti oli 1970- ja 1980-luvuilla, jolloin varsinaisen Korkeajännityksen rinnalla ilmestyi useita rinnakkaislehtiä, jotka erikoistuivat tiettyihin aselajeihin ja toisen maailmansodan rintamiin. Lisäksi Korkeajännitys-nimellä julkaistiin tuolloin avaruus-, vakoilu- ja lännentarinoita.  Korkeajännityksen tarinat ovat lehden historian aikana olleet peräisin useista eri lehdistä. Nykyään tarinoiden lähteenä toimii brittiläinen Commando-sarjakuva. Tyypillisessä tarinassa brittiläinen sotilas taistelee saksalaista natsia vastaan. Hankaluuksia saattavat lisäksi aiheuttaa epäpätevät yläluokkaiset upseerit tai kuriin sopeutumattomat rivimiehet. Tarinan lopussa päähenkilö surmaa pelkuriksi paljastuneen arkkivihollisensa. Korkeajännitys tunnetaan myös ”korkkarisaksasta” eli suomenkielisen dialogin sekaan ripotelluista saksalaisista sanoista ja fraaseista. Kuollessaan Korkeajännityksen hahmot huutavat usein tuskasta.  Vuodesta 1998 on julkaistu suomalaista tuotantoa olevia, suomalaiseen miljööseen sijoittuvia Korkeajännityksiä. Toisen maailmansodan lisäksi ne ovat sijoittuneet esimerkiksi Suomen sotaan ja Suomen sisällissotaan. Lisäksi on julkaistu vaaran vuosiin sijoittuvia jännitys- ja vakoilutarinoita. Useimmin ”Suomi-Korkkarien” piirtäjänä on toiminut Samuli ”Samson” Lintula.', 1, 'IN', 'SO'),
-(15, 'Maailmantäyttö kissakuvilla', 'https://thecatapi.com/', '2021-05-03', '2021-05-03', 'Kissa tässä hei. Mau mau mau, miaauuu mouurr mauu miu mau mouuuu maaaauuuu ANNA TONNIKALAA SAATANA miuaaa maaauuu mouuuuu miauu mauuu mouuuuurrrr murrrrr =^.^=', 1, 'FI', 'SO'),
-(16, 'Koirien paijaus projekti', 'https://www.koira.fi', '2021-05-03', '2021-05-03', 'Koira tässä hei. Murrr! Läääh läääh puuuh! Hau hau! Wuff Wuff! Nuusk Nuusk! MAKKARA! VOI JUKU SE TULI KOTIIN SE TULI KOTIIN TÄMÄ ON ONNELLISIN PÄIVÄ MAAILMASSA VOI JUKU HEITTÄÄKÖ SE PALLOA MENNÄÄNKÖ PIHALLE HAU HAU HAU PARAS PÄIVÄ IKINÄ!', 1, 'IN', 'SO'),
-(17, 'Pyykinpesu', 'https://www.omo.fi', '2021-05-03', '2021-05-03', 'Vaaleanpunaiseksi värjäytynyt valkopyykki tai nukkekokoon kutistunut villapaita harmittaa jokaista pyykkäriä. Näiltä virheiltä voidaan välttyä pyykin huolellisella lajittelulla. Samanlaista pesua edellyttävät vaatteet pyritään keräämään yhteen. Pyykit kannattaa lajitella paitsi värin ja pesulämpötilan myös materiaalin mukaan. Eri materiaaleilla ja kuiduilla on oma ihanteellinen puhdistuslämpötilansa ja pesumekaniikkaakin ne kestävät eri tavoin. Noudata aina pesuohjemerkkejä ja pesuaineen annosteluohjeita. 2. Taskut tyhjiksi ennen pyykinpesua  Ennen kuin pyöräytät koneen käyntiin, tyhjennä kaikkien vaatteiden taskut ja sulje vetoketjut, hakaset sekä tarranauhat. Jätä napit auki, jotta ne eivät repeydy ja irtoa pesussa. Nurinpäin käännetään kaikki jäykät ja voimakkaan väriset tekstiilit, kuten farkut. Narut ja kengännauhat. Rintaliivit ja sukkahousut pestään pesupussissa. Kaarituellisille liiveille konepesua ei suositella lainkaan. MAINOS          Lue myös: Pesitkö vaatteiden lisäksi myös nenäliinan pesukoneessa? Katso 10 tapaa saada nöyhtä pois vaatteista 3. Valitse pesuaine oikein  Olisi ihanaa, jos pärjäisi vain yhdellä pyykinpesuaineella, mutta valitettavasti näin ei ole. Tarvitaan ainakin valko-, kirjo- ja hienopesuainetta. Kaikkia löytyy jauheena ja nestemäisenä, hajustettuna ja hajustamattomana. Valkopesuainetta voi käyttää kaikissa lämpötiloissa. Se sisältää valkaisuainetta, eikä sovi värilliselle pyykille. Kirjopesu-aineessa ei ole valkaisuaineita. Siksi se on parasta kirjopyykille. Hienopesuaineet ovat mietoja ja usein nestemäisiä, jolloin ne liukenevat helposti veteen ja sopivat myös käsinpesuun. Allergikkojen ja vauvanpyykin pesijöiden kannattaa suosia hajustamattomia allergiatestattuja pesuaineita. 4. Annostele ohjeen mukaan  Pesuainetta annostellaan veden kovuuden mukaan. Suomessa vesi on yleensä pehmeää, joten pieni määrä pesuainetta riittää. Usein pesuainetta annostellaan liian paljon, eikä se ehdi huuhtoutua vaatteista kunnolla pois. Myös ympäristö kuormittuu turhaan. Katso annosteluohje pakkauksesta ja noudata sitä. Vähennä määrää, jos pyykkiä ei ole paljon, se ei ole kovin likaista tai pesukoneesi on normaalia pienempi. Puolen desilitran mitta on hyvä apuväline tiivistepesuaineen annostelussa.', 1, 'FI', 'SO'),
-(18, 'Vaatteiden lian poisto', 'https://www.loreal.fi', '2021-05-03', '2021-05-03', 'Huuhteluaineen käyttö ei ole välttämätöntä, mutta sitä voidaan käyttää konepesun yhteydessä. Huuhteluaine vähentää sähköisyyttä ja saa tekstiilit tuntumaan pehmeiltä. Huuhteluaine ei sovi kaikille materiaaleille. Teknisistä kankaista valmistettuja urheiluvaatteita ostaessa saa usein kuulla myyjän muistutuksen huuhteluaineen sopimattomuudesta. Huuhteluaine kerääntyy vaatteisiin ja kuormittaa tarpeettomasti ympäristöä, joten ainakin herkkäihoisten ja ympäristöä ajattelevien kannattaa harkita tarkkaan sen käyttöä. 6. Konekin tarvitsee pesua  Pesuaineiden zeoliitti sakkautuu pesukoneeseen. Pese kone muutaman kerran vuodessa tyhjänä 90 asteen pesuohjelmalla ja annostele pesuaineeksi fosfaattipitoista pesuainetta tai apteekissa myytävää sitruunahappoa. Puhdista säännöllisesti pesu- ja huuhteluainelokerot sekä koneen täyttöaukon kumikaulustiiviste esimerkiksi astianpesuharjalla ja vedellä. Kuivaa huolellisesti. Tyhjennä pesukoneen nukkasihti vähintään kaksi kertaa vuodessa ja kuivausrummun nukkasihti ja vesikaukalo aina käytön jälkeen. Pyyhi pesukoneen ulkopinnat pölystä kerran kuussa. Anna pesukoneen kuivua aina pesun jälkeen luukku auki, jotta sisäosat kuivuvat ja kone ei homehdu.', 1, 'HA', 'SO'),
-(19, 'Kasvuprojekti', '', '2021-01-01', '2021-05-05', 'Kasvuprojekti oli aivan erinomainen projekti ja sai kaupungilta 100 000 miljoonaa euroa rahaa.', 1, 'FI', 'SO'),
-(20, 'koiraprojekti', '', '2021-01-01', '2022-03-03', 'Koira eli kesykoira on harmaasuden kesy, jalostettu muoto. Se kuuluu nisäkkäiden luokkaan ja koiraeläinten heimoon. Koira on ihmisen kesyttämistä eläimistä vanhin. Kesyyntymisen alkuaikoina koirasta on ollut hyötyä varoittavana vahtina sekä jätteensyöjänä.', 1, 'IN', 'SO'),
-(21, 'Coca Cola Enjuo', '', '2021-05-02', '2021-05-29', 'Tohaa', 1, 'FI', 'SO');
+INSERT INTO `aavabackend_project` (`id`, `project_name`, `link`, `start_time`, `end_time`, `description`, `visible`, `status`, `team`, `modified`) VALUES
+(3, 'Aarnivalkea', 'https://www.github.com/aavavalkea', '2021-05-24', '2021-07-22', 'Aarnivalkea on maailman paras ohjelmistokehitysprojekti', 1, 'IN', 'SO', '2021-06-02 00:00:00.000000'),
+(4, 'Valokuvausmetodillinen tutkiminen', 'https://www.github.com', '2021-05-02', '2055-05-05', 'Suoritetaan valokuvausmetodillista tutkimista, kuinka kehittää asioita valokuvausmetodillisesti. Lienee sanomattakin selvää, että Valokuvausmetodillinen tutkimus vaatii täsmällisyyttä ja päättäväisyyttä, ja kannustaa kehittämään reaktiota tämänhetkisen tilanteen suhteen.', 1, 'FU', 'SO', '2021-06-02 00:00:00.000000'),
+(5, 'Nopea ohjelmistokehitys', 'https://www.linkedin.com', '1980-01-09', '2021-05-02', 'Meinattiin tehdä kilpailija Youtubelle mutta koodaamamme dekoderi oli niin tehokas että Google osti sen 1000 miljardilla $USD.', 1, 'IN', 'SO', '2021-06-02 00:00:00.000000'),
+(6, 'Ancible palvelimen ymmärtäminen', 'https://www.ancible.com', '2017-01-01', '2999-12-31', 'Vaikka odottaisimme 1000000 vuotta, ei ihmiskunta silti ymmärrä anciblea.', 1, 'IN', 'SO', '2021-06-02 00:00:00.000000'),
+(7, 'Uusien yhteistyökumppaneiden löytäminen', 'https://www.yhteistyokumppani.fi', '1970-01-01', '9999-12-31', 'Epätoivoiselta tämä näyttää....', 1, 'HA', 'SO', '2021-06-02 00:00:00.000000'),
+(8, 'UKM (Uusi Kilpailija Microsoftille)', 'https://www.umk.fi', '2020-10-27', '9999-12-31', 'Olemme alkaneet kirjoittamaan uutta käyttöjärjestelmää jonka pitäisi kokonaan korvata kaikki Microsoftin tarjoamat palvelut, mukaanlukien mutta ei rajoittuneena Github, Linkedin, xbox game pass, Windows, Visual Studio ja MsDos.', 1, 'IN', 'SO', '2021-06-02 00:00:00.000000'),
+(9, 'Chlas Ohlson Fikaus Viikko', 'https://www.chasohlson.fi', '2021-05-03', '2021-05-03', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 'FU', 'SO', '2021-06-02 00:00:00.000000'),
+(10, 'Työvälinevaraston avajaiset', 'https://www.tyovalinevarasto.co.su', '2021-05-03', '2222-05-03', 'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure? But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure? But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?', 1, 'FI', 'SO', '2021-06-02 00:00:00.000000'),
+(11, 'World Ablaze The Second World War 1939-1945', 'https://www.softakehitys.fi', '2021-05-03', '2021-05-03', 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.', 0, 'IN', 'SO', '2021-06-02 00:00:00.000000'),
+(12, 'Miksi ohjelmiston versionhallinta on tärkeää', 'kuinka usein ohjelmistokoodi pitäisi viedä versionhallinnassa', '2021-05-03', '2021-05-03', 'mitä muuta tietoa kuin koodi pitäisi ylläpitää versionhallinnassa? digitaalisen median versiohallinta? IT-alue ja versionhallinta? Versionhallinta microsoft/google etc', 1, 'HA', 'SO', '2021-06-02 00:00:00.000000'),
+(13, 'Projektin luonti työkalu', 'https://www.projektinluontityokalu.fi', '2021-05-03', '2021-05-03', 'Versionhallinnan ylläpitäminen on ohjelmistokehityksellisesti erittäin merkittävä attribuuttien konfiguroimisen apuväline. Tästä johtuen Projektinluontityökalun olemassaolo ja hengittäminen ovat tärkeitä asioita. Myös veden juominen on tärkeää. Paitsi raskaan veden, sen juomiseen kuolee ja se on hyvin kurjaa.', 1, 'FI', 'SO', '2021-06-02 00:00:00.000000'),
+(14, 'I pressed the HRE control and ahead of me rockets blazed through the sky', 'https://www.github.com/aavavalkakakaoe', '2021-05-03', '2021-05-03', 'Korkeajännitys (”Korkkari”) on Egmontin kustantama ja julkaisema sota-aiheinen sarjakuvalehti. Korkeajännitys aloitti ilmestymisensä Suomessa vuonna 1953 nimellä Korkeajännityssarja. Lehti sisälsi aluksi salapoliisi-, tieteis-, agentti- ja seikkailusarjoja. 1960-luvulta alkaen Korkeajännityksessä on ilmestynyt vain sotasarjakuvia, jotka useimmiten käsittelevät toista maailmansotaa brittisotilaiden näkökulmasta. Suosituimmillaan lehti oli 1970- ja 1980-luvuilla, jolloin varsinaisen Korkeajännityksen rinnalla ilmestyi useita rinnakkaislehtiä, jotka erikoistuivat tiettyihin aselajeihin ja toisen maailmansodan rintamiin. Lisäksi Korkeajännitys-nimellä julkaistiin tuolloin avaruus-, vakoilu- ja lännentarinoita.  Korkeajännityksen tarinat ovat lehden historian aikana olleet peräisin useista eri lehdistä. Nykyään tarinoiden lähteenä toimii brittiläinen Commando-sarjakuva. Tyypillisessä tarinassa brittiläinen sotilas taistelee saksalaista natsia vastaan. Hankaluuksia saattavat lisäksi aiheuttaa epäpätevät yläluokkaiset upseerit tai kuriin sopeutumattomat rivimiehet. Tarinan lopussa päähenkilö surmaa pelkuriksi paljastuneen arkkivihollisensa. Korkeajännitys tunnetaan myös ”korkkarisaksasta” eli suomenkielisen dialogin sekaan ripotelluista saksalaisista sanoista ja fraaseista. Kuollessaan Korkeajännityksen hahmot huutavat usein tuskasta.  Vuodesta 1998 on julkaistu suomalaista tuotantoa olevia, suomalaiseen miljööseen sijoittuvia Korkeajännityksiä. Toisen maailmansodan lisäksi ne ovat sijoittuneet esimerkiksi Suomen sotaan ja Suomen sisällissotaan. Lisäksi on julkaistu vaaran vuosiin sijoittuvia jännitys- ja vakoilutarinoita. Useimmin ”Suomi-Korkkarien” piirtäjänä on toiminut Samuli ”Samson” Lintula.', 1, 'IN', 'SO', '2021-06-02 00:00:00.000000'),
+(15, 'Maailmantäyttö kissakuvilla', 'https://thecatapi.com/', '2021-05-03', '2021-05-03', 'Kissa tässä hei. Mau mau mau, miaauuu mouurr mauu miu mau mouuuu maaaauuuu ANNA TONNIKALAA SAATANA miuaaa maaauuu mouuuuu miauu mauuu mouuuuurrrr murrrrr =^.^=', 1, 'FI', 'SO', '2021-06-02 00:00:00.000000'),
+(16, 'Koirien paijaus projekti', 'https://www.koira.fi', '2021-05-03', '2021-05-03', 'Koira tässä hei. Murrr! Läääh läääh puuuh! Hau hau! Wuff Wuff! Nuusk Nuusk! MAKKARA! VOI JUKU SE TULI KOTIIN SE TULI KOTIIN TÄMÄ ON ONNELLISIN PÄIVÄ MAAILMASSA VOI JUKU HEITTÄÄKÖ SE PALLOA MENNÄÄNKÖ PIHALLE HAU HAU HAU PARAS PÄIVÄ IKINÄ!', 1, 'IN', 'SO', '2021-06-02 00:00:00.000000'),
+(17, 'Pyykinpesu', 'https://www.omo.fi', '2021-05-03', '2021-05-03', 'Vaaleanpunaiseksi värjäytynyt valkopyykki tai nukkekokoon kutistunut villapaita harmittaa jokaista pyykkäriä. Näiltä virheiltä voidaan välttyä pyykin huolellisella lajittelulla. Samanlaista pesua edellyttävät vaatteet pyritään keräämään yhteen. Pyykit kannattaa lajitella paitsi värin ja pesulämpötilan myös materiaalin mukaan. Eri materiaaleilla ja kuiduilla on oma ihanteellinen puhdistuslämpötilansa ja pesumekaniikkaakin ne kestävät eri tavoin. Noudata aina pesuohjemerkkejä ja pesuaineen annosteluohjeita. 2. Taskut tyhjiksi ennen pyykinpesua  Ennen kuin pyöräytät koneen käyntiin, tyhjennä kaikkien vaatteiden taskut ja sulje vetoketjut, hakaset sekä tarranauhat. Jätä napit auki, jotta ne eivät repeydy ja irtoa pesussa. Nurinpäin käännetään kaikki jäykät ja voimakkaan väriset tekstiilit, kuten farkut. Narut ja kengännauhat. Rintaliivit ja sukkahousut pestään pesupussissa. Kaarituellisille liiveille konepesua ei suositella lainkaan. MAINOS          Lue myös: Pesitkö vaatteiden lisäksi myös nenäliinan pesukoneessa? Katso 10 tapaa saada nöyhtä pois vaatteista 3. Valitse pesuaine oikein  Olisi ihanaa, jos pärjäisi vain yhdellä pyykinpesuaineella, mutta valitettavasti näin ei ole. Tarvitaan ainakin valko-, kirjo- ja hienopesuainetta. Kaikkia löytyy jauheena ja nestemäisenä, hajustettuna ja hajustamattomana. Valkopesuainetta voi käyttää kaikissa lämpötiloissa. Se sisältää valkaisuainetta, eikä sovi värilliselle pyykille. Kirjopesu-aineessa ei ole valkaisuaineita. Siksi se on parasta kirjopyykille. Hienopesuaineet ovat mietoja ja usein nestemäisiä, jolloin ne liukenevat helposti veteen ja sopivat myös käsinpesuun. Allergikkojen ja vauvanpyykin pesijöiden kannattaa suosia hajustamattomia allergiatestattuja pesuaineita. 4. Annostele ohjeen mukaan  Pesuainetta annostellaan veden kovuuden mukaan. Suomessa vesi on yleensä pehmeää, joten pieni määrä pesuainetta riittää. Usein pesuainetta annostellaan liian paljon, eikä se ehdi huuhtoutua vaatteista kunnolla pois. Myös ympäristö kuormittuu turhaan. Katso annosteluohje pakkauksesta ja noudata sitä. Vähennä määrää, jos pyykkiä ei ole paljon, se ei ole kovin likaista tai pesukoneesi on normaalia pienempi. Puolen desilitran mitta on hyvä apuväline tiivistepesuaineen annostelussa.', 1, 'FI', 'SO', '2021-06-02 00:00:00.000000'),
+(18, 'Vaatteiden lian poisto', 'https://www.loreal.fi', '2021-05-03', '2021-05-03', 'Huuhteluaineen käyttö ei ole välttämätöntä, mutta sitä voidaan käyttää konepesun yhteydessä. Huuhteluaine vähentää sähköisyyttä ja saa tekstiilit tuntumaan pehmeiltä. Huuhteluaine ei sovi kaikille materiaaleille. Teknisistä kankaista valmistettuja urheiluvaatteita ostaessa saa usein kuulla myyjän muistutuksen huuhteluaineen sopimattomuudesta. Huuhteluaine kerääntyy vaatteisiin ja kuormittaa tarpeettomasti ympäristöä, joten ainakin herkkäihoisten ja ympäristöä ajattelevien kannattaa harkita tarkkaan sen käyttöä. 6. Konekin tarvitsee pesua  Pesuaineiden zeoliitti sakkautuu pesukoneeseen. Pese kone muutaman kerran vuodessa tyhjänä 90 asteen pesuohjelmalla ja annostele pesuaineeksi fosfaattipitoista pesuainetta tai apteekissa myytävää sitruunahappoa. Puhdista säännöllisesti pesu- ja huuhteluainelokerot sekä koneen täyttöaukon kumikaulustiiviste esimerkiksi astianpesuharjalla ja vedellä. Kuivaa huolellisesti. Tyhjennä pesukoneen nukkasihti vähintään kaksi kertaa vuodessa ja kuivausrummun nukkasihti ja vesikaukalo aina käytön jälkeen. Pyyhi pesukoneen ulkopinnat pölystä kerran kuussa. Anna pesukoneen kuivua aina pesun jälkeen luukku auki, jotta sisäosat kuivuvat ja kone ei homehdu.', 1, 'HA', 'SO', '2021-06-02 00:00:00.000000'),
+(19, 'Kasvuprojekti', '', '2021-01-01', '2021-05-05', 'Kasvuprojekti oli aivan erinomainen projekti ja sai kaupungilta 100 000 miljoonaa euroa rahaa.', 1, 'FI', 'SO', '2021-06-02 00:00:00.000000'),
+(20, 'koiraprojekti', '', '2021-01-01', '2022-03-03', 'Koira eli kesykoira on harmaasuden kesy, jalostettu muoto. Se kuuluu nisäkkäiden luokkaan ja koiraeläinten heimoon. Koira on ihmisen kesyttämistä eläimistä vanhin. Kesyyntymisen alkuaikoina koirasta on ollut hyötyä varoittavana vahtina sekä jätteensyöjänä.', 1, 'IN', 'SO', '2021-06-02 00:00:00.000000'),
+(21, 'Coca Cola Enjuo', '', '2021-05-02', '2021-05-29', 'Tohaa', 1, 'FI', 'SO', '2021-06-02 00:00:00.000000'),
+(22, 'Osa-aikainen hieno homma', 'https://www.hienohomma.fi', '2021-05-27', '2021-05-24', 'Jotain haetaan näin viime viikolla et kyllä oli mukava projekti', 1, 'HA', 'SO', '2021-06-02 00:00:00.000000'),
+(23, 'Oishi green tean juominen', '', '2021-06-01', '2022-07-05', 'Oishi Green Tea contains fresh brewed aromatic jasmine tea which is known for its health benefits. Oishi Green Tea has a delicious floral flavor with a hint of sweet. The very refreshing Oishi Green Tea is an ideal thirst quencher on hot days. Green tea contains no artificial additives and is an excellent alternative to carbonated soft drinks.', 0, 'FU', 'ME', '2021-06-02 00:00:00.000000'),
+(24, 'This is the name of the project', '', '2021-06-01', '2022-07-05', 'This is the description of the project.', 0, 'FU', 'ME', '2021-06-04 09:16:48.658539'),
+(25, 'Mörkö sanoo pööö', '', '2020-03-24', '2024-02-22', 'Mörkö tulee mörkö on mörkö sanoo pöö pöö pöö!', 0, 'FU', 'ME', '2021-06-04 13:47:42.299026'),
+(26, 'This is the name of the project', '', '2021-06-01', '2022-07-05', 'This is the description of the project.', 0, 'FU', 'ME', '2021-06-04 13:52:42.054756');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aavabackend_projectdeveloper`
+-- Rakenne taululle `aavabackend_projectdeveloper`
 --
 
 CREATE TABLE `aavabackend_projectdeveloper` (
@@ -176,31 +198,66 @@ CREATE TABLE `aavabackend_projectdeveloper` (
   `project_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Vedos taulusta `aavabackend_projectdeveloper`
+--
+
+INSERT INTO `aavabackend_projectdeveloper` (`id`, `join_date`, `quit_date`, `employee_id`, `project_id`) VALUES
+(1, '2021-05-27', '2021-05-31', 17, 22),
+(2, '2021-05-28', '2021-05-28', 1, 3),
+(3, '2021-05-28', '2021-05-28', 1, 4),
+(4, '2021-05-28', '2021-05-28', 4, 3),
+(5, '2000-01-01', '2001-04-08', 18, 3),
+(6, '2000-01-01', '2001-04-08', 17, 3),
+(7, '0001-01-01', '9999-09-09', 2, 9),
+(8, '2020-03-28', '2021-02-28', 5, 25),
+(9, '2021-05-28', '2021-05-28', 4, 25),
+(10, '2000-01-01', '2001-04-08', 18, 25),
+(11, '2020-03-28', '2021-02-28', 5, 26),
+(12, '2021-05-28', '2021-05-28', 4, 26),
+(13, '2000-01-01', '2001-04-08', 18, 26);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aavabackend_project_technology`
+-- Rakenne taululle `aavabackend_project_technology`
 --
 
 CREATE TABLE `aavabackend_project_technology` (
   `id` int(11) NOT NULL,
-  `project_id` int(11) DEFAULT NULL,
-  `technology_id` int(11) DEFAULT NULL
+  `project_id` int(11) NOT NULL,
+  `technology_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `aavabackend_project_technology`
+-- Vedos taulusta `aavabackend_project_technology`
 --
 
 INSERT INTO `aavabackend_project_technology` (`id`, `project_id`, `technology_id`) VALUES
-(1, 3, 2),
-(3, 3, 4),
-(2, 3, 10);
+(5, 3, 2),
+(6, 3, 4),
+(7, 3, 7),
+(4, 22, 6),
+(1, 22, 8),
+(2, 22, 9),
+(3, 22, 10),
+(8, 23, 1),
+(9, 23, 2),
+(10, 23, 5),
+(11, 24, 1),
+(12, 24, 2),
+(13, 24, 5),
+(15, 25, 3),
+(16, 25, 5),
+(14, 25, 9),
+(17, 26, 1),
+(18, 26, 2),
+(19, 26, 5);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aavabackend_technology`
+-- Rakenne taululle `aavabackend_technology`
 --
 
 CREATE TABLE `aavabackend_technology` (
@@ -210,7 +267,7 @@ CREATE TABLE `aavabackend_technology` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `aavabackend_technology`
+-- Vedos taulusta `aavabackend_technology`
 --
 
 INSERT INTO `aavabackend_technology` (`id`, `technology_name`, `team`) VALUES
@@ -229,7 +286,7 @@ INSERT INTO `aavabackend_technology` (`id`, `technology_name`, `team`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_group`
+-- Rakenne taululle `auth_group`
 --
 
 CREATE TABLE `auth_group` (
@@ -240,7 +297,7 @@ CREATE TABLE `auth_group` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_group_permissions`
+-- Rakenne taululle `auth_group_permissions`
 --
 
 CREATE TABLE `auth_group_permissions` (
@@ -252,7 +309,7 @@ CREATE TABLE `auth_group_permissions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_permission`
+-- Rakenne taululle `auth_permission`
 --
 
 CREATE TABLE `auth_permission` (
@@ -263,7 +320,7 @@ CREATE TABLE `auth_permission` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `auth_permission`
+-- Vedos taulusta `auth_permission`
 --
 
 INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALUES
@@ -315,7 +372,7 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_user`
+-- Rakenne taululle `auth_user`
 --
 
 CREATE TABLE `auth_user` (
@@ -333,11 +390,11 @@ CREATE TABLE `auth_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `auth_user`
+-- Vedos taulusta `auth_user`
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$TlfZZfeJPZas$rwszmKMaJ9mSkkGc34gmQINHS4Uma91EdaI1zoxMSOU=', '2021-05-24 13:53:40.075351', 1, 'admin', '', '', 'admin@example.com', 1, 1, '2021-04-13 09:02:26.145923'),
+(1, 'pbkdf2_sha256$216000$TlfZZfeJPZas$rwszmKMaJ9mSkkGc34gmQINHS4Uma91EdaI1zoxMSOU=', '2021-05-31 05:18:56.462201', 1, 'admin', '', '', 'admin@example.com', 1, 1, '2021-04-13 09:02:26.145923'),
 (2, 'pbkdf2_sha256$216000$eAen9IEryLqT$KXXWHAtkrnfIQ4swlshfVX657ptpZ7Q1yDut6bPd6fk=', NULL, 0, 'vaypaa', 'Paavo', 'Väyrynen', 'paavo.vayrynen@edu.hel.fi', 0, 1, '2021-04-13 09:03:29.000000'),
 (3, 'pbkdf2_sha256$216000$No3wAnEVlV8G$IUTu5+iQ3O6u93qDG4hssoajQpKqpCZ3t6RTyYS4k1g=', NULL, 1, 'rytris', 'Risto', 'Ryti', 'risto.ryti@edu.hel.fi', 1, 1, '2021-04-21 12:12:20.000000'),
 (4, 'pbkdf2_sha256$216000$jxuwEeJcH8cM$E+zyUOqCPuIbjJKyzoVLL1+9jfg3YizY6Y895F9eHUk=', NULL, 1, 'harrhak', 'Harri', 'Hakkeri', 'harri@hakkeri.harri', 1, 1, '2021-05-03 06:36:21.000000'),
@@ -354,12 +411,13 @@ INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `userna
 (15, 'pbkdf2_sha256$216000$CrScl9mrewNK$k0jn0pOqqZphWQy7VmoGOM04xttp1sQTn/ymX2cPaUc=', NULL, 0, 'niisau', 'Sauli', 'Niinistö', 'sauli.niinisto@presidentt.fi', 1, 1, '2021-05-03 06:45:00.000000'),
 (16, 'pbkdf2_sha256$216000$4m0MqVzyvJrx$Ev3oEmFzl/0+Hyb2pdK7Jbfik7NoiGI0iSAH/oaq1vQ=', NULL, 1, 'voikun', 'Kuningas', 'Voittamaton', 'kuningas.voittamaton@edu.hel.fi', 1, 1, '2021-05-03 06:46:24.000000'),
 (17, 'pbkdf2_sha256$216000$m0LnZECGWRKx$htC+hYCxUcCeZ37/0WEStThG6D2AR3P5MN32etivQyg=', NULL, 1, 'toitar', 'Tarja', 'Toimelias', 'tarja.toimelias@edu.hel.fi', 1, 1, '2021-05-03 06:47:11.000000'),
-(18, '', '2021-05-27 20:15:00.000000', 0, 'putvla', 'Vladimir', 'Putin', 'vladimir@putin.fi', 0, 1, '2021-05-05 17:15:00.000000');
+(18, '', '2021-05-27 20:15:00.000000', 0, 'putvla', 'Vladimir', 'Putin', 'vladimir@putin.fi', 0, 1, '2021-05-05 17:15:00.000000'),
+(19, '', NULL, 0, 'solsim', 'Simo', 'Solmio', 'simosolmio@edu.hel.fi', 1, 1, '2021-05-31 00:01:00.000000');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_user_groups`
+-- Rakenne taululle `auth_user_groups`
 --
 
 CREATE TABLE `auth_user_groups` (
@@ -371,7 +429,7 @@ CREATE TABLE `auth_user_groups` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_user_user_permissions`
+-- Rakenne taululle `auth_user_user_permissions`
 --
 
 CREATE TABLE `auth_user_user_permissions` (
@@ -383,7 +441,7 @@ CREATE TABLE `auth_user_user_permissions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `django_admin_log`
+-- Rakenne taululle `django_admin_log`
 --
 
 CREATE TABLE `django_admin_log` (
@@ -398,17 +456,26 @@ CREATE TABLE `django_admin_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `django_admin_log`
+-- Vedos taulusta `django_admin_log`
 --
 
 INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
 (1, '2021-05-24 14:03:59.456399', '3', 'Aarnivalkea', 1, '[{\"added\": {}}]', 2, 1),
-(2, '2021-05-24 14:30:20.485075', '48', 'Attachment object (48)', 1, '[{\"added\": {}}]', 5, 1);
+(2, '2021-05-24 14:30:20.485075', '48', 'Attachment object (48)', 1, '[{\"added\": {}}]', 5, 1),
+(3, '2021-05-27 09:46:20.135973', '22', 'Osa-aikainen hieno homma', 1, '[{\"added\": {}}]', 2, 1),
+(4, '2021-05-27 09:46:57.781321', '1', 'ProjectDeveloper object (1)', 1, '[{\"added\": {}}]', 4, 1),
+(5, '2021-05-28 06:44:44.739056', '135', 'Attachment object (135)', 1, '[{\"added\": {}}]', 5, 1),
+(6, '2021-05-28 06:44:58.366944', '136', 'Attachment object (136)', 1, '[{\"added\": {}}]', 5, 1),
+(7, '2021-05-28 06:45:07.404876', '137', 'Attachment object (137)', 1, '[{\"added\": {}}]', 5, 1),
+(8, '2021-05-28 06:45:46.958198', '2', 'ProjectDeveloper object (2)', 1, '[{\"added\": {}}]', 4, 1),
+(9, '2021-05-28 06:45:52.405684', '3', 'ProjectDeveloper object (3)', 1, '[{\"added\": {}}]', 4, 1),
+(10, '2021-05-28 06:46:24.791672', '3', 'Aarnivalkea', 2, '[{\"changed\": {\"fields\": [\"Technology\"]}}]', 2, 1),
+(11, '2021-05-28 06:50:21.610381', '4', 'ProjectDeveloper object (4)', 1, '[{\"added\": {}}]', 4, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `django_content_type`
+-- Rakenne taululle `django_content_type`
 --
 
 CREATE TABLE `django_content_type` (
@@ -418,7 +485,7 @@ CREATE TABLE `django_content_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `django_content_type`
+-- Vedos taulusta `django_content_type`
 --
 
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
@@ -437,7 +504,7 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `django_migrations`
+-- Rakenne taululle `django_migrations`
 --
 
 CREATE TABLE `django_migrations` (
@@ -448,7 +515,7 @@ CREATE TABLE `django_migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `django_migrations`
+-- Vedos taulusta `django_migrations`
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
@@ -473,12 +540,18 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (19, 'auth', '0011_update_proxy_permissions', '2021-05-24 13:31:40.230691'),
 (20, 'auth', '0012_alter_user_first_name_max_length', '2021-05-24 13:31:40.254009'),
 (21, 'sessions', '0001_initial', '2021-05-24 13:31:40.300227'),
-(22, 'aavabackend', '0002_project_team', '2021-05-26 11:11:38.287239');
+(22, 'aavabackend', '0002_project_team', '2021-05-26 11:11:38.287239'),
+(23, 'aavabackend', '0002_auto_20210527_1226', '2021-05-27 09:27:02.392918'),
+(24, 'aavabackend', '0003_auto_20210527_1231', '2021-05-27 09:31:43.336954'),
+(25, 'aavabackend', '0004_project_modified', '2021-06-01 07:44:10.595973'),
+(26, 'aavabackend', '0002_remove_project_modified', '2021-06-02 08:26:08.474827'),
+(27, 'aavabackend', '0003_project_modified', '2021-06-02 10:55:10.284618'),
+(28, 'aavabackend', '0004_auto_20210602_1357', '2021-06-02 10:57:14.739160');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `django_session`
+-- Rakenne taululle `django_session`
 --
 
 CREATE TABLE `django_session` (
@@ -488,10 +561,12 @@ CREATE TABLE `django_session` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `django_session`
+-- Vedos taulusta `django_session`
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('8xi4hws7gg0b2xu33veit5lbmxwggx7n', '.eJxVjEEOwiAUBe_C2hBoKRWX7nsG8uE_pGogKe3KeHdt0oVu38y8l_C0rdlvDYufWVyEFqffLVB8oOyA71RuVcZa1mUOclfkQZucKuN5Pdy_g0wtf2unRuvQJXTODdbAMYWedW-hWEGfmQia1EAGNrneQAUeOQUAMZhoxPsD8Gc5Iw:1lnaKG:CH8ypmRwUA78nMiDpYoN7BcKw0cYEFP_7fYQON8U2MI', '2021-06-14 05:18:56.462201'),
+('k9pjjw2xv5xlr831fmtplcnmaisb2zc2', '.eJxVjEEOwiAUBe_C2hBoKRWX7nsG8uE_pGogKe3KeHdt0oVu38y8l_C0rdlvDYufWVyEFqffLVB8oOyA71RuVcZa1mUOclfkQZucKuN5Pdy_g0wtf2unRuvQJXTODdbAMYWedW-hWEGfmQia1EAGNrneQAUeOQUAMZhoxPsD8Gc5Iw:1lmCZW:A6HR_Vj100Zt5sL7Jgvvi6uGNwt-pI7OXpnGDY34ifM', '2021-06-10 09:44:58.505147'),
 ('qanz7u4gdi9eybo0je6suungtx4hho9m', '.eJxVjEEOwiAUBe_C2hBoKRWX7nsG8uE_pGogKe3KeHdt0oVu38y8l_C0rdlvDYufWVyEFqffLVB8oOyA71RuVcZa1mUOclfkQZucKuN5Pdy_g0wtf2unRuvQJXTODdbAMYWedW-hWEGfmQia1EAGNrneQAUeOQUAMZhoxPsD8Gc5Iw:1llB1Y:-sbX_40Jkrawte_R1gIkQX4gDtyodSLGBp2adB72bc4', '2021-06-07 13:53:40.077352');
 
 --
@@ -532,8 +607,8 @@ ALTER TABLE `aavabackend_projectdeveloper`
 --
 ALTER TABLE `aavabackend_project_technology`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `aavabackend_projecttechn_technology_id_project_id_6bd7e465_uniq` (`technology_id`,`project_id`),
-  ADD KEY `aavabackend_projectt_project_id_03d9c223_fk_aavabacke` (`project_id`);
+  ADD UNIQUE KEY `aavabackend_project_tech_project_id_technology_id_7926eee9_uniq` (`project_id`,`technology_id`),
+  ADD KEY `aavabackend_project__technology_id_ffdfbc65_fk_aavabacke` (`technology_id`);
 
 --
 -- Indexes for table `aavabackend_technology`
@@ -622,31 +697,31 @@ ALTER TABLE `django_session`
 -- AUTO_INCREMENT for table `aavabackend_attachment`
 --
 ALTER TABLE `aavabackend_attachment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 
 --
 -- AUTO_INCREMENT for table `aavabackend_employee`
 --
 ALTER TABLE `aavabackend_employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `aavabackend_project`
 --
 ALTER TABLE `aavabackend_project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `aavabackend_projectdeveloper`
 --
 ALTER TABLE `aavabackend_projectdeveloper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `aavabackend_project_technology`
 --
 ALTER TABLE `aavabackend_project_technology`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `aavabackend_technology`
@@ -676,7 +751,7 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
@@ -694,7 +769,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -706,67 +781,67 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- Constraints for dumped tables
+-- Rajoitteet vedostauluille
 --
 
 --
--- Constraints for table `aavabackend_attachment`
+-- Rajoitteet taululle `aavabackend_attachment`
 --
 ALTER TABLE `aavabackend_attachment`
   ADD CONSTRAINT `aavabackend_attachme_project_id_43627d34_fk_aavabacke` FOREIGN KEY (`project_id`) REFERENCES `aavabackend_project` (`id`);
 
 --
--- Constraints for table `aavabackend_employee`
+-- Rajoitteet taululle `aavabackend_employee`
 --
 ALTER TABLE `aavabackend_employee`
   ADD CONSTRAINT `aavabackend_employee_user_id_f784242d_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
--- Constraints for table `aavabackend_projectdeveloper`
+-- Rajoitteet taululle `aavabackend_projectdeveloper`
 --
 ALTER TABLE `aavabackend_projectdeveloper`
   ADD CONSTRAINT `aavabackend_projectd_employee_id_7bd8ae62_fk_aavabacke` FOREIGN KEY (`employee_id`) REFERENCES `aavabackend_employee` (`id`),
   ADD CONSTRAINT `aavabackend_projectd_project_id_76f166a9_fk_aavabacke` FOREIGN KEY (`project_id`) REFERENCES `aavabackend_project` (`id`);
 
 --
--- Constraints for table `aavabackend_project_technology`
+-- Rajoitteet taululle `aavabackend_project_technology`
 --
 ALTER TABLE `aavabackend_project_technology`
-  ADD CONSTRAINT `aavabackend_projectt_project_id_03d9c223_fk_aavabacke` FOREIGN KEY (`project_id`) REFERENCES `aavabackend_project` (`id`),
-  ADD CONSTRAINT `aavabackend_projectt_technology_id_efec49a5_fk_aavabacke` FOREIGN KEY (`technology_id`) REFERENCES `aavabackend_technology` (`id`);
+  ADD CONSTRAINT `aavabackend_project__project_id_7f0567d3_fk_aavabacke` FOREIGN KEY (`project_id`) REFERENCES `aavabackend_project` (`id`),
+  ADD CONSTRAINT `aavabackend_project__technology_id_ffdfbc65_fk_aavabacke` FOREIGN KEY (`technology_id`) REFERENCES `aavabackend_technology` (`id`);
 
 --
--- Constraints for table `auth_group_permissions`
+-- Rajoitteet taululle `auth_group_permissions`
 --
 ALTER TABLE `auth_group_permissions`
   ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
   ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`);
 
 --
--- Constraints for table `auth_permission`
+-- Rajoitteet taululle `auth_permission`
 --
 ALTER TABLE `auth_permission`
   ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`);
 
 --
--- Constraints for table `auth_user_groups`
+-- Rajoitteet taululle `auth_user_groups`
 --
 ALTER TABLE `auth_user_groups`
   ADD CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
   ADD CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
--- Constraints for table `auth_user_user_permissions`
+-- Rajoitteet taululle `auth_user_user_permissions`
 --
 ALTER TABLE `auth_user_user_permissions`
   ADD CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
   ADD CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
--- Constraints for table `django_admin_log`
+-- Rajoitteet taululle `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
   ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
